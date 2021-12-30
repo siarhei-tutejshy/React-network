@@ -3,33 +3,39 @@ import Post from './Posts/Post';
 import React from 'react';
 
 const MyPosts = (props) => {
-  const postArr = props.postsData.map(post => <Post post={post.post} likes={post.likes}/> )
+    console.log(props.newPostText);
+    const postArr = props.postsData.map((post) => (
+        <Post post={post.post} likes={post.likes} />
+    ));
 
-  let newPostElement = React.createRef();
+    let newPostElement = React.createRef();
 
-  let addPost = () => {
-    let text = newPostElement.current.value;
-    alert(text)
-  }
+    let addPost = () => {
+        props.addPost();
+    };
 
+    let newPostChange = () => {
+        props.updateNewPost(newPostElement.current.value);
+    };
 
-
-  console.log(postArr)
-    return <div className = {s.content}>
-    
-     <div>
-       My posts
-       <div>
-         <textarea ref={newPostElement}></textarea>
-       </div>
-       <div>
-         <button onClick = {addPost}>add posts</button>
-       </div>
-       <div>
-        {postArr}
-       </div>
-     </div>
-  </div>
+    return (
+        <div className={s.content}>
+            <div>
+                My posts
+                <div>
+                    <textarea
+                        ref={newPostElement}
+                        onChange={newPostChange}
+                        value={props.newPostText}
+                    ></textarea>
+                </div>
+                <div>
+                    <button onClick={addPost}>add posts</button>
+                </div>
+                <div>{postArr}</div>
+            </div>
+        </div>
+    );
 };
 
 export default MyPosts;

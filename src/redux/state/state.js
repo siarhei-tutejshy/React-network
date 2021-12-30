@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from '../../render';
+
 let state = {
     dialogPage: {
         dialogsMemb: [
@@ -14,6 +16,7 @@ let state = {
             { message: 'How s your thing', id: 3 },
             { message: 'fine', id: 4 },
         ],
+        newMessageText: 'new message',
     },
 
     profilePage: {
@@ -22,6 +25,39 @@ let state = {
             { post: 'How are you', id: 2, likes: 12 },
             { post: 'How s your thing', id: 3, likes: 5 },
         ],
+        newPostText: 'new post',
     },
 };
- export default state
+
+export let addPost = (e) => {
+    let newPost = {
+        id: 5,
+        post: state.profilePage.newPostText,
+        likes: 0,
+    };
+    state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+};
+export let updateNewPostText = (newPost) => {
+    state.profilePage.newPostText = newPost;
+    rerenderEntireTree(state);
+};
+
+export let addMessage = () => {
+    let newMessage = {
+        id: 5,
+        message: state.dialogPage.newMessageText,
+    };
+
+    state.dialogPage.messages.push(newMessage);
+    state.dialogPage.newMessageText = '';
+    rerenderEntireTree(state);
+};
+
+export let updateNewMessageText = (newMessage) => {
+    state.dialogPage.newMessageText = newMessage;
+    rerenderEntireTree(state);
+};
+
+export default state;
