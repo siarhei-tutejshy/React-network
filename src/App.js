@@ -1,6 +1,7 @@
 import { Route, BrowserRouter, Routes, NavLink } from 'react-router-dom';
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
@@ -29,8 +30,7 @@ const App = (props) => {
                         <Route
                             path="/dialogs"
                             element={
-                                <Dialogs
-                                    dialogPage={props.state.dialogPage}
+                                <DialogsContainer
                                     dispatch={props.dispatch}
                                 />
                             }

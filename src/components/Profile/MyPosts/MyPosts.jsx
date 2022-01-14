@@ -14,11 +14,11 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.addPost();
     };
 
     let newPostChange = () => {
-        props.dispatch(updateNewPostTextActionCreator(newPostElement.current.value));
+        props.newPostChange(newPostElement.current.value);
     };
 
     return (
