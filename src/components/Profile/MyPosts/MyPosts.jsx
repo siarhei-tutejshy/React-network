@@ -5,7 +5,8 @@ import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../r
 
 
 const MyPosts = (props) => {
-    console.log(props.dispatch);
+    
+    console.log(props, 'posts');
     const postArr = props.postsData.map((post) => (
         <Post post={post.post} likes={post.likes} />
     ));
