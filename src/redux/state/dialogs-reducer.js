@@ -1,7 +1,6 @@
 const SEND_MESSAGE = 'SEND_MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 let initialState = {
-   
         dialogsMemb: [
             { name: 'Andrew', id: 1 },
             { name: 'Mari', id: 2 },
@@ -28,12 +27,17 @@ const dialogsReducer = (state = initialState, action) => {
                 message: state.newMessageText,
             };
 
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            return state;
+            
+            return {...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ''
+            };
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.body;
-            return state;
+            
+            return {
+                ...state,
+                newMessageText: action.body
+            };
         default:
             return state;
     }

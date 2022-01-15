@@ -23,23 +23,27 @@ const Message = (props) => {
 };
 
 const Dialogs = (props) => {
-
+   
+console.log(props,'dialprops')
     const dialogComp = props.dialogPage.dialogsMemb.map((dialog) => (
         <Dialog name={dialog.name} id={dialog.id} />
     ));
     const showMessage = props.dialogPage.messages.map((mes) => (
         <Message message={mes.message} id={mes.id} />
     ));
-    let newMessageElement = React.createRef();
+    let newMessageText = props.dialogPage.newMessageText
+    
 
     let addMessage = () => {
+        console.log('added')
         props.addMessage();
     };
 
-    let changeMessageText = () => {
-        props.changeMessageText(newMessageElement.current.value);
+    let changeMessageText = (event) => {
+        
+        props.changeMessageText(event.target.value);
     };
-
+    
     return (
         <div className={cl.dialogs}>
             <div className={cl.users__list}>{dialogComp}</div>
@@ -47,9 +51,9 @@ const Dialogs = (props) => {
                 {showMessage}
                 <div>
                     <textarea
-                        ref={newMessageElement}
+                       
                         onChange={changeMessageText}
-                        value={props.dialogPage.newMessageText}
+                        value={newMessageText}
                     ></textarea>
                 </div>
                 <div>

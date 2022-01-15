@@ -9,8 +9,8 @@ import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
-const App = (props) => {
-    console.log(props.state.profilePage);
+const App = () => {
+    
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -18,23 +18,8 @@ const App = (props) => {
                 <Navbar />
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route
-                            path="/profile"
-                            element={
-                                <Profile
-                                    profilePage={props.state.profilePage}
-                                    dispatch={props.dispatch}
-                                />
-                            }
-                        />
-                        <Route
-                            path="/dialogs"
-                            element={
-                                <DialogsContainer
-                                    dispatch={props.dispatch}
-                                />
-                            }
-                        />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/dialogs" element={<DialogsContainer />} />
 
                         <Route path="/news" element={<News />} />
                         <Route path="/music" element={<Music />} />
