@@ -10,7 +10,7 @@ import store  from './redux/state/redux-store';
 import { Provider } from 'react-redux';
 
 
-
+console.log(store)
     ReactDOM.render(
         <React.StrictMode>
             <Provider store ={store}>
