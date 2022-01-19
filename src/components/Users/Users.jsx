@@ -1,5 +1,6 @@
 import s from './Users.module.css';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
     let pages = [];
@@ -21,12 +22,14 @@ const Users = (props) => {
             </div>
             {props.users.map((user) => (
                 <div>
-                    <img
-                        src={
-                            user.photos.small ||
-                            'https://upload.wikimedia.org/wikipedia/commons/8/87/Avatar_poe84it.png'
-                        }
-                    />
+                    <NavLink to={'/profile/'+ user.id}>
+                        <img
+                            src={
+                                user.photos.small ||
+                                'https://upload.wikimedia.org/wikipedia/commons/8/87/Avatar_poe84it.png'
+                            }
+                        />
+                    </NavLink>
                     {user.name}
                     <div>
                         {user.followed ? (

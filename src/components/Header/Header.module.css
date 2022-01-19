@@ -1,8 +1,17 @@
 .header{
     grid-area: header;
     background-color: #282c34;
-  
+    display: flex;
+  justify-content: space-between;
   }
   .header img{
     height: 50px;
+  }
+
+  .header a{
+    
+  }
+
+  .login{
+    color: #fff;
   }

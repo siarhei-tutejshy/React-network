@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import {
-    currentPagectionCreator,
-    followActionCreator,
-    setTotalCountActionCreator,
-    setUsersctionCreator,
-    unfollowActionCreator,
+    changeCurrentPage,
+    follow,
+    setTotalUsersCount,
+    setUsers,
+    unfollow,
 } from '../../redux/state/users-reducer';
 import Users from './Users';
 import * as axios from 'axios';
 import React from 'react';
+
 class UsersContainer extends React.Component {
     componentDidMount() {
         console.log('agai2n',this.props);
@@ -51,25 +52,25 @@ let mapStateToProps = (state) => {
     };
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followActionCreator(userId));
-        },
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => {
+//             dispatch(followActionCreator(userId));
+//         },
 
-        unfollow: (userId) => {
-            dispatch(unfollowActionCreator(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersctionCreator(users));
-        },
-        changeCurrentPage: (pageNumber) => {
-            dispatch(currentPagectionCreator(pageNumber));
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalCountActionCreator(totalCount));
-        },
-    };
-};
+//         unfollow: (userId) => {
+//             dispatch(unfollowActionCreator(userId));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersctionCreator(users));
+//         },
+//         changeCurrentPage: (pageNumber) => {
+//             dispatch(currentPagectionCreator(pageNumber));
+//         },
+//         setTotalUsersCount: (totalCount) => {
+//             dispatch(setTotalCountActionCreator(totalCount));
+//         },
+//     };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {follow,unfollow,setUsers,changeCurrentPage,setTotalUsersCount})(UsersContainer);
