@@ -15,7 +15,7 @@ console.log(props)
                 </div>
                 <div>
                     <img src={props.profile.photos.large || 'https://upload.wikimedia.org/wikipedia/commons/8/87/Avatar_poe84it.png'}/>
-                    <p>{props.profile.fillName}</p>
+                    <p>{props.profile.fullName}</p>
 
                 </div>
         </div>

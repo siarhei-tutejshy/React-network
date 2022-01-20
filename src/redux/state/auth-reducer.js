@@ -1,3 +1,5 @@
+
+import { authAPI } from './../../DAL/api';
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 
 
@@ -24,5 +26,13 @@ const authReducer = (state = initialState, action) => {
     }
 };
 export const setAuthData = (auth) => ({ type: SET_AUTH_DATA, auth });
+
+export const getAuthThunk =()=> (dispatch) => {
+    authAPI.getAuth().then(data => {
+   
+        dispatch(setAuthData(data))
+    })
+    
+}
 
 export default authReducer;

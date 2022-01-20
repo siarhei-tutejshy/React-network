@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import {
     changeCurrentPage,
     follow,
+    toggleFollowingInProgress,
+    getUsersThunk,
     setTotalUsersCount,
     setUsers,
     unfollow,
@@ -9,33 +11,15 @@ import {
 import Users from './Users';
 import * as axios from 'axios';
 import React from 'react';
+import {usersAPI} from '../../DAL/api'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        console.log('agai2n',this.props);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=5`
-            )
-            .then((response) => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-
-                
-            });
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
     onPageChange =(pageNumber) => {
-        this.props.changeCurrentPage(pageNumber)
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=5`
-            )
-            .then((response) => {
-                this.props.setUsers(response.data.items);
-        
-
-                console.log('again3');
-            });
+       
+        this.props.getUsersThunk(pageNumber, this.props.pageSize)
 
     }
     render() {
@@ -49,9 +33,11 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        followingInProgress: state.usersPage.followingInProgress
     };
 };
 
+export default connect(mapStateToProps, {follow,unfollow,changeCurrentPage,toggleFollowingInProgress,getUsersThunk})(UsersContainer);
 // let mapDispatchToProps = (dispatch) => {
 //     return {
 //         follow: (userId) => {
@@ -73,4 +59,4 @@ let mapStateToProps = (state) => {
 //     };
 // };
 
-export default connect(mapStateToProps, {follow,unfollow,setUsers,changeCurrentPage,setTotalUsersCount})(UsersContainer);
+
