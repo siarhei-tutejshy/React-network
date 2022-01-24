@@ -21,13 +21,12 @@ class ProfileContainer extends React.Component {
 
 const ProfileMatch = (props) => {
 	let match = useParams();
-    
-    console.log(match, "matchparams")
+
 	return (
-		<AuthRedurect {...props} match={match} />
+		<ProfileContainer {...props} match={match} />
 	)
 }
-let AuthRedurect = AuthRedirectContainer(ProfileContainer)
+let AuthRedurect = AuthRedirectContainer(ProfileMatch)
 let mapStateToProps = (state) => {
     
     return {
@@ -37,7 +36,7 @@ let mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { setUserProfile,getProfileThunk})(ProfileMatch );
+export default connect(mapStateToProps, { setUserProfile,getProfileThunk})(AuthRedurect );
 
 
 
