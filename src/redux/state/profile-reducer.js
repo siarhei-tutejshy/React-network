@@ -51,12 +51,14 @@ export const updateNewPostText = (body) => ({
 });
 
 export const setUserProfile = (profile) => ({
+   
     type: SET_USER_PROFILE,
     profile: profile,
 });
 
 export const getProfileThunk = (userId) => {
     return (dispatch) => {
+        console.log(userId, 'id')
         profileAPI.getProfile(userId).then(data => {
             dispatch(setUserProfile(data))
         })

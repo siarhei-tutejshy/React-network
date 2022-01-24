@@ -27,6 +27,7 @@ const Dialogs = (props) => {
 console.log(props,'dialprops')
     const dialogComp = props.dialogPage.dialogsMemb.map((dialog) => (
         <Dialog name={dialog.name} id={dialog.id} />
+        
     ));
     const showMessage = props.dialogPage.messages.map((mes) => (
         <Message message={mes.message} id={mes.id} />
